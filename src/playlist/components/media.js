@@ -20,18 +20,18 @@ class Media extends Component {
     })
   }
   render () {
-    const { title, autor, image } = this.props
+    const { title, author, cover } = this.props
     return (
       <div className="Media" onClick={this.handleClick}>
         <div className="Media-cover">
           <img
-            src={image}
+            src={cover}
             width={260}
             height={160}
             className="Media-image"
           />
           <h3 className="Media-title">{title}</h3>
-          <p className="Media-autor">{this.state.autor}</p>
+          <p className="Media-autor">{author}</p>
         </div>
       </div>
     )
@@ -39,7 +39,7 @@ class Media extends Component {
 }
 
 Media.propTypes = {
-  image: PropTypes.string,
+  cover: PropTypes.string,
   title: PropTypes.string.isRequired,
   autor: PropTypes.string,
   type: PropTypes.oneOf(['video','audio'])

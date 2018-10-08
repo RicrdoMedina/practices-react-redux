@@ -1,14 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Media from './src/playlist/components/media'
+import Categories from './src/playlist/components/categories'
+import data from './src/api.json'
 
 const app = document.getElementById('app')
 render(
-        <Media
-          type="video"
-          title="Responsive design"
-          autor="LeonidasEsteban"
-          image="./images/covers/bitcoin.jpg"
-        />,
+        <Categories data={data}/>,
         app
       )
