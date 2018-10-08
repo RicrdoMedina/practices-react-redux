@@ -5,10 +5,19 @@ import './media.css'
 class Media extends Component {
   // constructor (props) {
   //   super(props)
-  //   this.handleClick = this.handleClick.bind(this)
+  //   this.state = {
+  //     autor: props.autor
+  //   }
+  //   //this.handleClick = this.handleClick.bind(this)
   // }
+  state = {
+    autor: 'Leonidas'
+  }
   handleClick = (event) => {
     console.log(this.props.title)
+    this.setState({
+      autor: 'Ricardo Celis'
+    })
   }
   render () {
     const { title, autor, image } = this.props
@@ -22,7 +31,7 @@ class Media extends Component {
             className="Media-image"
           />
           <h3 className="Media-title">{title}</h3>
-          <p className="Media-autor">{autor}</p>
+          <p className="Media-autor">{this.state.autor}</p>
         </div>
       </div>
     )
