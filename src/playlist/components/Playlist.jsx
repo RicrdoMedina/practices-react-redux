@@ -3,7 +3,6 @@ import Media from './Media.jsx'
 import './playlist.css'
 
 export default (props) => {
-  console.log(props)
   const { title, description, playlist } = props
 
   return (
