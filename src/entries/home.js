@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Categories from './src/playlist/components/categories'
-import data from './src/api.json'
+import Home from '../pages/containers/Home.jsx'
+import data from '../api.json'
 
 const app = document.getElementById('app')
 render(
-        <Categories data={data}/>,
+        <Home data={data}/>,
         app
       )

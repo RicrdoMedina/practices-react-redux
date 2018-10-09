@@ -1,7 +1,6 @@
 import React from 'react'
-import Media from './media'
+import Media from './Media.jsx'
 import './playlist.css'
-import Play from '../../icons/components/play'
 
 export default (props) => {
   console.log(props)
@@ -11,7 +10,6 @@ export default (props) => {
     <div className="Playlist">
       <h3 className = "Playlist-descripcion">{description}</h3>
 			<h1 className = "Playlist-titulo">{title}</h1>
-      <Play color="red" size="32"/>
       {
         playlist.map((item) => {
           return <Media {...item} key={item.id}/>
