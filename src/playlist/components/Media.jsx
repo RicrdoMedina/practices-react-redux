@@ -5,7 +5,7 @@ import './media.css'
 export default (props) => {
   const { title, author, cover } = props
   return (
-    <div className="Media">
+    <div className="Media" onClick={props.handleClick}>
       <div className="Media-cover">
         <img
           src={cover}

@@ -11,7 +11,11 @@ export default (props) => {
 			<h1 className = "Playlist-titulo">{title}</h1>
       {
         playlist.map((item) => {
-          return <Media {...item} key={item.id}/>
+          return <Media
+                  {...item}
+                  key={item.id}
+                  handleClick={props.handleOpenModal}
+                  />
         })
       }
     </div>
