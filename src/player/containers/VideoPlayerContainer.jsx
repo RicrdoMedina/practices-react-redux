@@ -5,11 +5,13 @@ import Title from '../components/Title.jsx'
 import PlayPause from '../components/PlayPause.jsx'
 import Timer from '../components/Timer.jsx'
 import Controls from '../components/videoPlayerControls.jsx'
+import { formattedTime } from '../../utils/libs'
 
 class VideoPlayer extends Component {
   state = {
     pause: true,
     duration: 0,
+    currentTime: 0
   }
   togglePlay = (event) => {
     //actualizar el estado con un arrow function o una funcion normal para evitar posibles inconvenientes
@@ -30,7 +32,13 @@ class VideoPlayer extends Component {
   handleLoadedMetadata = event => {
     this.video = event.target
     this.setState({
-      duration: this.video.duration
+      duration: formattedTime(this.video.duration)
+    })
+  }
+  handleTimeUpdate = event => {
+    console.log(this.video.currentTime)
+    this.setState({
+      currentTime: formattedTime(this.video.currentTime)
     })
   }
   render () {
@@ -46,11 +54,12 @@ class VideoPlayer extends Component {
           />
           <Timer
             duration={this.state.duration}
+            currentTime={this.state.currentTime}
           />
         </Controls>
-        
         <Video
           handleLoadedMetadata={this.handleLoadedMetadata}
+          handleTimeUpdate={this.handleTimeUpdate}
           autoplay = {this.props.autoplay}
           pause={this.state.pause}
           src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
