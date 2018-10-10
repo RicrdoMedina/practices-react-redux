@@ -115,7 +115,7 @@ class VideoPlayer extends Component {
     return (
       <VideoPlayerLayout setRef = { this.setRef }>
         <Title
-          title="Esto es un video"
+          title={this.props.title}
         />
         <Controls>
           <PlayPause
@@ -151,7 +151,7 @@ class VideoPlayer extends Component {
           handleSeeking={this.handleSeeking}
           handleSeeked={this.handleSeeked}
           handleReady = { this.handleReady }
-          src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
+          src={this.props.src}
         />
       </VideoPlayerLayout>
     )
