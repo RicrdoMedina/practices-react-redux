@@ -10,7 +10,7 @@ class VideoPlayer extends Component {
   }
   togglePlay = (event) => {
     //actualizar el estado con un arrow function o una funcion normal para evitar posibles inconvenientes
-    
+
     // this.setState({
     //   pause: !this.state.pause
     // })
@@ -18,6 +18,11 @@ class VideoPlayer extends Component {
     this.setState(prevState => ({
       pause: !prevState.pause	
     }))
+  }
+  componentDidMount () {
+    this.setState({
+      pause: (!this.props.autoplay)
+    })
   }
   render () {
     return (
@@ -30,7 +35,8 @@ class VideoPlayer extends Component {
           handleClick={this.togglePlay}
         />
         <Video
-          autoplay = {true}
+          autoplay = {this.props.autoplay}
+          pause={this.state.pause}
           src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
         />
       </VideoPlayerLayout>
