@@ -3,7 +3,10 @@ import './video-player.css'
 
 export default function VideoPlayerLayout (props) {
   return (
-    <div className="VideoPlayerLayout">
+    <div
+      className="VideoPlayerLayout"
+      ref = { props.setRef }
+    >
       {props.children}
     </div>
   )

@@ -9,6 +9,7 @@ import { formattedTime } from '../../utils/libs'
 import ProgressBar from '../components/progressBar.jsx'
 import Spinner from '../../utils/components/spinner'
 import Volume from '../components/Volume.jsx'
+import FullScreen from '../components/fullScreen.jsx';
 
 class VideoPlayer extends Component {
   state = {
@@ -45,7 +46,7 @@ class VideoPlayer extends Component {
     })
   }
   handleTimeUpdate = event => {
-    console.log(this.video.currentTime)
+    //console.log(this.video.currentTime)
     this.setState({
       currentTime: formattedTime(this.video.currentTime),
       timeFloat: this.video.currentTime
@@ -93,9 +94,26 @@ class VideoPlayer extends Component {
     this.video.volume = event.target.value
     this.setState({ volume: this.video.volume })
   }
+  handleFullScreenClick = event => {
+    if (document.mozFullScreen) {
+      document.mozCancelFullScreen();
+    }
+    else if (document.webkitIsFullScreen) {
+      document.webkitExitFullscreen();
+    }
+    else if (this.player.mozRequestFullScreen) {
+      this.player.mozRequestFullScreen();
+    }
+    else if (this.player.webkitRequestFullscreen) {
+      this.player.webkitRequestFullscreen(); 
+    }
+  }
+  setRef = element => {
+    this.player = element
+  }
   render () {
     return (
-      <VideoPlayerLayout>
+      <VideoPlayerLayout setRef = { this.setRef }>
         <Title
           title="Esto es un video"
         />
@@ -117,6 +135,9 @@ class VideoPlayer extends Component {
             handleVolumeChange = { this.handleVolumeChange }
             handleVolumeToggle = { this.handleVolumeToggle }
             volume = { this.state.volume }
+          />
+          <FullScreen 
+            handleFullScreenClick = { this.handleFullScreenClick }
           />
         </Controls>
         <Spinner 
