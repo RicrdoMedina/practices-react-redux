@@ -11,6 +11,13 @@ function handleSubmit (event) {
   const title = data.get('title')
 
   console.log(title)
+
+  store.dispatch({
+    type:'ADD_SONG',
+    payload: {
+      title,
+    }
+  })
 }
 
 const initialState = [
