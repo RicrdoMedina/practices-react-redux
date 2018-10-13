@@ -8,7 +8,8 @@ import data from '../api.json'
 
 const initialState = {
   data: {
-    ...data
+    ...data,
+    search: [],
   }
 }
 
