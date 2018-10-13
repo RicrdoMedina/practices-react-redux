@@ -1,8 +1,8 @@
 import React from 'react'
-import Media from './Media.jsx'
+import MediaContainer from '../containers/media'
 import './playlist.css'
 
-export default (props) => {
+function Playlist (props) {
   const { title, description, playlist } = props
 
   return (
@@ -10,10 +10,10 @@ export default (props) => {
       <h3 className = "Playlist-descripcion">{description}</h3>
 			<h1 className = "Playlist-titulo">{title}</h1>
       {
-        playlist.map((item) => {
-          return <Media
-                  {...item}
-                  key={item.id}
+        playlist.map((mediaId) => {
+          return <MediaContainer
+                  key={mediaId}
+                  id={mediaId}
                   openModal={props.handleOpenModal}
                   />
         })
@@ -21,6 +21,8 @@ export default (props) => {
     </div>
   )
 }
+
+export default Playlist
 
 // class Playlist extends Component {
 //   render () {
