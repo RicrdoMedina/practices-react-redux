@@ -9,8 +9,8 @@ import data from '../api.json'
 const initialState = {
   data: {
     ...data,
-    search: [],
-  }
+  },
+  search: [],
 }
 
 const store = createStore(

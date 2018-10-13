@@ -4,9 +4,18 @@ function data (state, action) {
 
       let results = []
       
-      state.data.categories.forEach( category => {
-        results = results.concat(category.playlist.filter(item => item.author.includes(action.payload.query)))
-      })
+      if (action.payload.query) {
+        state.data.categories.forEach(
+          category => {
+             results = results.concat(
+               category.playlist.filter(
+                 item => item.author.toLowerCase()
+                    .includes( action.payload.query.toLowerCase() )
+               )
+             )
+           }
+         )
+      }
 
       return {
         ...state,
