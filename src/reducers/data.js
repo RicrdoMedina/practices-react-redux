@@ -2,11 +2,10 @@ function data (state, action) {
   switch (action.type) {
     case 'SEARCH_VIDEO': {
 
-      //action.payload.query
-      const list = state.data.categories[2].playlist
+      let results = []
       
-      const results = list.filter((item) => {
-        return item.author.includes(action.payload.query)  
+      state.data.categories.forEach( category => {
+        results = results.concat(category.playlist.filter(item => item.author.includes(action.payload.query)))
       })
 
       return {
