@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import HomeLayout from '../components/HomeLayout.jsx'
 import Categories from '../../categories/components/Categories.jsx'
 import Related from '../../related/components/Related.jsx'
@@ -29,7 +30,7 @@ class Home extends Component {
           <Related/>
           
           <Categories
-            categories={this.props.data.categories}
+            categories={this.props.categories}
             handleOpenModal={this.handleOpenModal}
           />
           {
@@ -53,4 +54,10 @@ class Home extends Component {
   }
 }
 
-export default Home
+function mapStateToProps (state, props) {
+  return {
+    categories: state.data.categories
+  }
+}
+
+export default connect(mapStateToProps)(Home)
