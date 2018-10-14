@@ -8,6 +8,7 @@ import ModalContainer from '../../widgets/containers/ModalContainer.jsx'
 import Modal from '../../widgets/components/Modal.jsx'
 import HandleError from '../../error/containers/HandleError.jsx'
 import VideoPlayer from '../../player/containers/VideoPlayerContainer.jsx'
+import { openModal, closeModal } from '../../actions/index'
 
 class Home extends Component {
   // state = {
@@ -19,20 +20,13 @@ class Home extends Component {
     //   media
     // })
     console.log(id)
-    this.props.dispatch({
-      type: 'OPEN_MODAL',
-      payload: {
-        mediaId: id,
-      }
-    })
+    this.props.dispatch(openModal(id))
   }
   handleCloseModal = (event) => {
     // this.setState({
     //   modalVisible: false,
     // })
-    this.props.dispatch({
-      type: 'CLOSE_MODAL'
-    })
+    this.props.dispatch(closeModal())
   }
   render () {
    // console.log(this.props.modal.get('visibility'))
