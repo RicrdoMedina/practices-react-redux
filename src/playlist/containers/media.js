@@ -3,14 +3,17 @@ import Media from '../components/media.jsx'
 import { connect } from 'react-redux'
 
 class MediaContainer extends Component {
+
   render () {
-    return <Media {...this.props.data}/>
+   // console.log(this.props.data)
+    
+   return <Media {...this.props.data.toJS()}/>
   }
 }
 
 function mapStateToProps (state, props) {
   return {
-    data: state.data.entities.media[props.id]
+    data: state.getIn(['data', 'entities', 'media', props.id])
   }
 }
 

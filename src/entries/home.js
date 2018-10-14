@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { Map as map } from 'immutable';
 import reducer from '../reducers/index'
 import Home from '../pages/containers/Home.jsx'
 // import data from '../api.json'
@@ -21,7 +22,7 @@ import Home from '../pages/containers/Home.jsx'
 
 const store = createStore(
                 reducer,
-                {},
+                map(),
                 window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
               )
 
