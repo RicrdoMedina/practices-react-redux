@@ -18,7 +18,8 @@ class Media extends PureComponent {
     // this.setState({
     //   autor: 'Ricardo Celis'
     // })
-    this.props.openModal(this.props)
+    console.log('media',this.props.id)
+    this.props.openModal(this.props.id)
   }
   render () {
     const { title, author, cover } = this.props

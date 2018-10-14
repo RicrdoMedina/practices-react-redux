@@ -10,21 +10,32 @@ import HandleError from '../../error/containers/HandleError.jsx'
 import VideoPlayer from '../../player/containers/VideoPlayerContainer.jsx'
 
 class Home extends Component {
-  state = {
-    modalVisible: false,
-  }
-  handleOpenModal = (media) => {
-    this.setState({
-      modalVisible: true,
-      media
+  // state = {
+  //   modalVisible: false,
+  // }
+  handleOpenModal = (id) => {
+    // this.setState({
+    //   modalVisible: true,
+    //   media
+    // })
+    console.log(id)
+    this.props.dispatch({
+      type: 'OPEN_MODAL',
+      payload: {
+        mediaId: id,
+      }
     })
   }
   handleCloseModal = (event) => {
-    this.setState({
-      modalVisible: false,
+    // this.setState({
+    //   modalVisible: false,
+    // })
+    this.props.dispatch({
+      type: 'CLOSE_MODAL'
     })
   }
   render () {
+   // console.log(this.props.modal.get('visibility'))
     return (
       <HandleError>
         <HomeLayout>
@@ -36,15 +47,16 @@ class Home extends Component {
             search={this.props.search}
           />
           {
-            this.state.modalVisible && <ModalContainer>
+            this.props.modal.get('visibility') && <ModalContainer>
                                           <div className="modal-overlay">
                                             <Modal
                                               handleClick = { this.handleCloseModal }
                                             >
                                               <VideoPlayer
                                                 autoplay
-                                                src={this.state.media.src}
-                                                title={this.state.media.title}
+                                                mediaId={this.props.modal.get('mediaId')}
+                                                //src={this.state.media.src}
+                                                //title={this.state.media.title}
                                               />
                                             </Modal>
                                           </div>
@@ -57,6 +69,7 @@ class Home extends Component {
 }
 
 function mapStateToProps (state, props) {
+  console.log(state.get('modal'))
 
   const categories = state.getIn(['data', 'categories']).map((categoryId) => {
     return state.getIn(['data', 'entities', 'categories', categoryId])
@@ -77,7 +90,8 @@ function mapStateToProps (state, props) {
 
   return {
     categories,
-    search: searchResults
+    search: searchResults,
+    modal: state.get('modal')
   }
 }
 

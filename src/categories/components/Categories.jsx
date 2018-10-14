@@ -10,7 +10,9 @@ function Categories (props) {
       <Search/>
       {
         props.search.map((item) => {
-          return <Media 
+          return <Media
+                  openModal={props.handleOpenModal}
+                  id={item.get('id')}
                   title={item.get('title')} 
                   author={item.get('author')} 
                   cover={item.get('cover')}  
