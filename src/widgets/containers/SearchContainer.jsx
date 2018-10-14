@@ -11,7 +11,7 @@ class SearchContainer extends Component {
     event.preventDefault()
     console.log('submit')
     console.log(this.input.value)
-    this.props.dispatch(searchEntities(this.input.value))
+    this.props.searchEntities(this.input.value)
   }
   setInputRef = element => {
     this.input = element
@@ -33,4 +33,8 @@ class SearchContainer extends Component {
   }
 }
 
-export default connect()(SearchContainer)
+const mapDispatchToProps = {
+	searchEntities
+}
+
+export default connect(null, mapDispatchToProps)(SearchContainer)

@@ -8,7 +8,9 @@ import ModalContainer from '../../widgets/containers/ModalContainer.jsx'
 import Modal from '../../widgets/components/Modal.jsx'
 import HandleError from '../../error/containers/HandleError.jsx'
 import VideoPlayer from '../../player/containers/VideoPlayerContainer.jsx'
-import { openModal, closeModal } from '../../actions/index'
+import { openModal, closeModal } from'../../actions/index';
+// import * as actions from '../../actions/index'
+// import { bindActionCreators } from 'redux'
 
 class Home extends Component {
   // state = {
@@ -20,13 +22,13 @@ class Home extends Component {
     //   media
     // })
     console.log(id)
-    this.props.dispatch(openModal(id))
+    this.props.openModal(id)
   }
   handleCloseModal = (event) => {
     // this.setState({
     //   modalVisible: false,
     // })
-    this.props.dispatch(closeModal())
+    this.props.closeModal()
   }
   render () {
    // console.log(this.props.modal.get('visibility'))
@@ -89,4 +91,15 @@ function mapStateToProps (state, props) {
   }
 }
 
-export default connect(mapStateToProps)(Home)
+const mapDispatchToProps = {
+	openModal,
+	closeModal,
+}
+
+// function mapDispatchToProps (dispatch) {
+//   return {
+//     actions: bindActionCreators(actions, dispatch)
+//   }
+// }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
