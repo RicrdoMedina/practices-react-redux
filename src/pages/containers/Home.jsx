@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { List as list } from 'immutable'
 import HomeLayout from '../components/HomeLayout.jsx'
 import Categories from '../../categories/components/Categories.jsx'
 import Related from '../../related/components/Related.jsx'
@@ -61,9 +62,22 @@ function mapStateToProps (state, props) {
     return state.getIn(['data', 'entities', 'categories', categoryId])
   })
 
+  let searchResults = list()
+
+  const search = state.get('data').get('search')
+
+  if (typeof(search) === 'string' && search !== '') {
+    const mediaList = state.get('data').get('entities').get('media');
+		searchResults = mediaList.filter((item) => {
+			if (item.get('author').toLowerCase().includes(search.toLowerCase()) || item.get('title').toLowerCase().includes(search.toLowerCase())){
+				return true
+			}
+		}).toList();
+  }
+
   return {
     categories,
-    search: state.getIn(['data', 'search'])
+    search: searchResults
   }
 }
 
