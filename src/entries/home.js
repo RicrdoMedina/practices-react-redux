@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import { Map as map } from 'immutable';
 import reducer from '../reducers/index'
 import Home from '../pages/containers/Home.jsx'
+import logger from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension'
 // import data from '../api.json'
 // import data from '../schemas/index.js'
 
@@ -20,7 +22,7 @@ import Home from '../pages/containers/Home.jsx'
 //   }
 // }
 
-function logger ({getState, dispatch}) {
+function logger_ ({getState, dispatch}) {
   return (next) => {
     return (action) => {
       console.log('Vamos a enviar esta accion', action)
@@ -35,7 +37,9 @@ function logger ({getState, dispatch}) {
 const store = createStore(
                 reducer,
                 map(),
-                applyMiddleware(logger)
+                composeWithDevTools(
+                  applyMiddleware(logger, logger_)
+                )
                 //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
               )
 
