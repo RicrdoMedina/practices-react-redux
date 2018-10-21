@@ -7,6 +7,8 @@ import reducer from '../reducers/index'
 import Home from '../pages/containers/Home.jsx'
 import logger from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
+
 // import data from '../api.json'
 // import data from '../schemas/index.js'
 
@@ -38,7 +40,7 @@ const store = createStore(
                 reducer,
                 map(),
                 composeWithDevTools(
-                  applyMiddleware(logger, logger_)
+                  applyMiddleware(logger, thunk)
                 )
                 //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
               )

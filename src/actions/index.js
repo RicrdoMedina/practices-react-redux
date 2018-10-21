@@ -1,7 +1,8 @@
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
-  SEARCH_ENTITIES
+  SEARCH_ENTITIES,
+  SEARCH_ASYNC_ENTITIES
 }
 from '../action-types/index'
 
@@ -17,6 +18,19 @@ export function openModal(mediaId) {
 export function closeModal() {
   return {
     type: CLOSE_MODAL,
+  }
+}
+
+export function searchAsyncEntities(query) {
+  return (dispatch) => {
+
+    //fetch()
+    //XHR
+    //TRAE
+    // y en el callback colocariamos el dispatch
+    setTimeout(() => {
+      dispatch(searchEntities(query))
+    }, 5000)
   }
 }
 
